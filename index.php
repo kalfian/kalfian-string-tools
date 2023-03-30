@@ -82,7 +82,7 @@
 
       $("#json-format").click(function() {
         var input = $("#json-input-output").val();
-        var output = JSON.stringify(JSON.parse(input), null, 2);
+        var output = JSON.stringify(JSON.parse(input), null, 4);
         $("#json-input-output").val(output);
       });
 
