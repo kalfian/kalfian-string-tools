@@ -64,9 +64,9 @@
         var input = $("#json-input-output").val();
         // Manual unescape string
         // remove \n and \r to empty string
-        input = 
-        input = input.replace("\n", '');
-        input = input.replace("\r", '');
+        // trim empty space
+        input = input.replaceAll("\n", '');
+        input = input.replaceAll("\r", '');
         // parse json
         var output = JSON.parse(input);
         $("#json-input-output").val(output);
