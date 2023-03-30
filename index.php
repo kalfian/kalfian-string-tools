@@ -62,7 +62,11 @@
     <script>
       $("#unescape-string").click(function() {
         var input = $("#json-input-output").val();
-        var output = unescape(input);
+        // Manual unescape string
+        // remove \n and \r
+        input = input.replace(/\\r/g, '');
+        // parse json
+        var output = JSON.parse(input);
         $("#json-input-output").val(output);
       });
 
