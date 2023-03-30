@@ -63,13 +63,15 @@
       $("#unescape-string").click(function() {
         var input = $("#json-input-output").val();
 
-        // Remove first and last " if exists
-        if (input.charAt(0) === '"') {
+        // Remove first and last " or ' if exists
+        if (input.charAt(0) === '"' || input.charAt(0) === "'") {
           input = input.substr(1);
         }
-        if (input.charAt(input.length - 1) === '"') {
+
+        if (input.charAt(input.length - 1) === '"' || input.charAt(input.length - 1) === "'") {
           input = input.substr(0, input.length - 1);
         }
+        
         // Manual unescape string
         // remove \n and \r to empty string
         // trim empty space
