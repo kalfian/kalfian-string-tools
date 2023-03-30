@@ -62,20 +62,36 @@
     <script>
       $("#unescape-string").click(function() {
         var input = $("#json-input-output").val();
+
+        // Remove first and last " if exists
+        if (input.charAt(0) === '"') {
+          input = input.substr(1);
+        }
+        if (input.charAt(input.length - 1) === '"') {
+          input = input.substr(0, input.length - 1);
+        }
         // Manual unescape string
         // remove \n and \r to empty string
         // trim empty space
-        input = input.replaceAll("\n", '');
-        input = input.replaceAll("\r", '');
+        input = input.replace(/\\r/g, '').replace(/\\n/g, '').trim();
+        // remove \"
+        input = input.replace(/\\\"/g, '"');
         // parse json
-        var output = JSON.parse(input);
-        $("#json-input-output").val(output);
+        $("#json-input-output").val(input);
       });
 
       $("#json-format").click(function() {
         var input = $("#json-input-output").val();
         var output = JSON.stringify(JSON.parse(input), null, 2);
         $("#json-input-output").val(output);
+      });
+
+      $("#escape-string").click(function() {
+        var input = $("#json-input-output").val();
+        // Escape json to string
+        input = JSON.stringify(input);
+        $("#json-input-output").val(input);
+
       });
     </script>
   </body>
